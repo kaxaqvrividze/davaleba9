@@ -1,13 +1,14 @@
 package com.example.davaleba9android.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.davaleba9android.dao.RoomRepository
+import com.example.davaleba9android.dao.RmRep
+
 import com.example.davaleba9android.model.DataUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class EdAyVwMl @Inject constructor(private val repository: RoomRepository):
+class EdAyVwMl @Inject constructor(private val repository: RmRep):
     ViewModel() {
 
     fun getDataUserById(id: Int): DataUser {

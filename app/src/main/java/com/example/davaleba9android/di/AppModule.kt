@@ -2,8 +2,8 @@ package com.example.davaleba9android.di
 
 import android.app.Application
 import com.example.davaleba9android.dao.AppDao
-import com.example.davaleba9android.dao.AppDatabase
-import com.example.davaleba9android.network.RetroServiceInterface
+import com.example.davaleba9android.dao.AppDb
+import com.example.davaleba9android.network.SerInt
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,13 +18,13 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun getAppDatabase(context: Application): AppDatabase {
-        return AppDatabase.getAppDBInstance(context)
+    fun getAppDatabase(context: Application): AppDb {
+        return AppDb.getAppDBInstance(context)
     }
 
     @Provides
     @Singleton
-    fun getAppDao(appDatabase: AppDatabase): AppDao {
+    fun getAppDao(appDatabase: AppDb): AppDao {
         return appDatabase.getAppDao()
     }
 
@@ -32,8 +32,8 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun getRetroServiceInstance(retrofit: Retrofit): RetroServiceInterface {
-        return retrofit.create(RetroServiceInterface::class.java)
+    fun getRetroServiceInstance(retrofit: Retrofit): SerInt {
+        return retrofit.create(SerInt::class.java)
     }
 
     @Provides

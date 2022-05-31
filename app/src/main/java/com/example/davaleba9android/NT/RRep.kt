@@ -4,14 +4,14 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.davaleba9android.dao.AppDao
 import com.example.davaleba9android.model.DataUser
-import com.example.davaleba9android.model.RepositoriesList
+import com.example.davaleba9android.model.RepList
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
 class RRep @Inject constructor(
-    private val retroServiceInterface: RetroServiceInterface,
+    private val retroServiceInterface: SerInt,
     private val appDao: AppDao
 ) {
 
@@ -27,11 +27,11 @@ class RRep @Inject constructor(
 
     //get data from api
     fun makeApiCall(query: String?) {
-        val call: Call<RepositoriesList> = retroServiceInterface.getDataFromAPI(query!!)
-        call?.enqueue(object : Callback<RepositoriesList> {
+        val call: Call<RepList> = retroServiceInterface.getDataFromAPI(query!!)
+        call?.enqueue(object : Callback<RepList> {
             override fun onResponse(
-                call: Call<RepositoriesList>,
-                response: Response<RepositoriesList>
+                call: Call<RepList>,
+                response: Response<RepList>
             ) {
                 if (response.isSuccessful) {
                     appDao.deleteAllRecords()
@@ -42,7 +42,7 @@ class RRep @Inject constructor(
                 }
             }
 
-            override fun onFailure(call: Call<RepositoriesList>, t: Throwable) {
+            override fun onFailure(call: Call<RepList>, t: Throwable) {
                 Log.d("logging", "Failure")
             }
         })

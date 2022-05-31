@@ -9,7 +9,7 @@ import com.example.davaleba9android.R
 import com.example.davaleba9android.model.DataUser
 import kotlinx.android.synthetic.main.user_item_card.view.*
 
-class RecyclerView : RecyclerView.Adapter<RecyclerView.MyViewHolder>() {
+class RecyclerView : RecyclerView.Adapter<com.example.davaleba9android.adapter.RecyclerView.MyViewHolder>() {
 
     var listDataUser: List<DataUser>? = null
 
@@ -23,7 +23,7 @@ class RecyclerView : RecyclerView.Adapter<RecyclerView.MyViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RecyclerView.MyViewHolder {
+    ): MyViewHolder {
         return MyViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.user_item_card, parent, false
@@ -31,7 +31,7 @@ class RecyclerView : RecyclerView.Adapter<RecyclerView.MyViewHolder>() {
         )
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val dataUser = listDataUser?.get(position)
         holder.itemView.setOnClickListener {
             if (dataUser != null) {

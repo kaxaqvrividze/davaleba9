@@ -10,17 +10,18 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.example.davaleba9android.R
-import com.example.davaleba9android.adapter.RecyclerViewAdapter
+import com.example.davaleba9android.adapter.RecyclerView
 import com.example.davaleba9android.model.DataUser
-import com.example.davaleba9android.viewmodel.MainActivityViewModel
+import com.example.davaleba9android.ui.EdUAct.Companion.newIntentEditDataUser
+import com.example.davaleba9android.viewmodel.MainAyVwMl
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var recyclerViewAdapter: RecyclerViewAdapter
-    private lateinit var viewModel: MainActivityViewModel
+    private lateinit var recyclerViewAdapter: RecyclerView
+    private lateinit var viewModel: MainAyVwMl
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         initViewModel()
         initMainViewModel()
 
-        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MainAyVwMl::class.java)
         viewModel.getAllRepositoryList().observe(this) {
             recyclerViewAdapter.listDataUser = it
         }
@@ -51,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             val decoration =
                 DividerItemDecoration(applicationContext, DividerItemDecoration.VERTICAL)
             addItemDecoration(decoration)
-            recyclerViewAdapter = RecyclerViewAdapter()
+            recyclerViewAdapter = RecyclerView()
             adapter = recyclerViewAdapter
             Log.d("logging", "prepare ViewModel")
         }
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun initMainViewModel() {
-        val viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        val viewModel = ViewModelProvider(this).get(MainAyVwMl::class.java)
         viewModel.getAllRepositoryList().observe(this, Observer<List<DataUser>> {
             recyclerViewAdapter.setListData(it)
             recyclerViewAdapter.notifyDataSetChanged()
@@ -75,7 +76,7 @@ class MainActivity : AppCompatActivity() {
             val lastname = it.last_name
             val email = it.email
             val avatar = it.avatar
-            val intent = EditUserActivity
+            val intent = EdUAct
                 .newIntentEditDataUser(this, it.id, firstname, lastname, email, avatar)
             startActivity(intent)
         }

@@ -7,21 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.davaleba9android.Constants.Companion.ARG_AVATAR
-import com.example.davaleba9android.Constants.Companion.ARG_DATA_USER_ID
-import com.example.davaleba9android.Constants.Companion.ARG_EMAIL
-import com.example.davaleba9android.Constants.Companion.ARG_FIRSTNAME
-import com.example.davaleba9android.Constants.Companion.ARG_LASTNAME
+import com.example.davaleba9android.CT.Companion.ARG_AVATAR
+import com.example.davaleba9android.CT.Companion.ARG_DATA_USER_ID
+import com.example.davaleba9android.CT.Companion.ARG_EMAIL
+import com.example.davaleba9android.CT.Companion.ARG_FIRSTNAME
+import com.example.davaleba9android.CT.Companion.ARG_LASTNAME
 import com.example.davaleba9android.R
 import com.example.davaleba9android.model.DataUser
-import com.example.davaleba9android.viewmodel.EditActivityViewModel
+import com.example.davaleba9android.viewmodel.EdAyVwMl
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_edit_user.*
 
 @AndroidEntryPoint
 class EdUFrag : Fragment() {
 
-    private lateinit var viewModel: EditActivityViewModel
+    private lateinit var viewModel: EdAyVwMl
     private var dataUserId = -1
     private lateinit var avatar: String
 
@@ -45,7 +45,7 @@ class EdUFrag : Fragment() {
         Log.d("logging", "edit user # $dataUserId")
 
         setContent()
-        viewModel = ViewModelProvider(this).get(EditActivityViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(EdAyVwMl::class.java)
         btn_delete_user.setOnClickListener {
             Log.d("logging", "delete user")
             viewModel.deleteRecord(viewModel.getDataUserById(dataUserId!!))

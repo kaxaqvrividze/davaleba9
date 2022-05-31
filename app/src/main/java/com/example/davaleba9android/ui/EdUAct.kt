@@ -5,11 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.davaleba9android.Constants.Companion.ARG_AVATAR
-import com.example.davaleba9android.Constants.Companion.ARG_DATA_USER_ID
-import com.example.davaleba9android.Constants.Companion.ARG_EMAIL
-import com.example.davaleba9android.Constants.Companion.ARG_FIRSTNAME
-import com.example.davaleba9android.Constants.Companion.ARG_LASTNAME
+import com.example.davaleba9android.CT.Companion.ARG_AVATAR
+import com.example.davaleba9android.CT.Companion.ARG_DATA_USER_ID
+import com.example.davaleba9android.CT.Companion.ARG_EMAIL
+import com.example.davaleba9android.CT.Companion.ARG_FIRSTNAME
+import com.example.davaleba9android.CT.Companion.ARG_LASTNAME
 import com.example.davaleba9android.R
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,7 +46,7 @@ class EdUAct : AppCompatActivity() {
         bundle.putString(ARG_AVATAR, avatar)
 
         val transaction = this.supportFragmentManager.beginTransaction()
-        val editUserFragment = EditUserFragment()
+        val editUserFragment = EdUFrag()
         editUserFragment.arguments = bundle
 
         transaction.replace(R.id.edit_user_container, editUserFragment)
@@ -57,7 +57,7 @@ class EdUAct : AppCompatActivity() {
 
         private const val EXTRA_SCREEN_MODE = "extra_mode"
         private const val MODE_EDIT = "mode_edit"
-//        private const val MODE_ADD = "mode_add"
+
 
         fun newIntentEditDataUser(context: Context, dataUserId: Int, firstname: String, lastname: String, email: String, avatar: String): Intent {
             val intent = Intent(context, EdUAct::class.java)
@@ -69,11 +69,6 @@ class EdUAct : AppCompatActivity() {
             intent.putExtra(ARG_AVATAR, avatar)
             return intent
         }
-//          [prepared fun to add new user if need]
-//        fun newIntentAddDataUser(context: Context): Intent {
-//            val intent = Intent(context, EditUserActivity::class.java)
-//            intent.putExtra(EXTRA_SCREEN_MODE, MODE_ADD)
-//            return intent
-//        }
+
     }
 }
